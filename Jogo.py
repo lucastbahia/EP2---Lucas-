@@ -61,3 +61,16 @@ def afundados(frota,tabuleiro):
                 X += 1
 
     return X
+
+
+def afundados(frota, tabuleiro):
+    soma=0
+    for tipo_navio in frota:
+        for navio in frota[tipo_navio]:
+            afundado=True
+            for lugar in navio:
+                if tabuleiro[lugar[0]][lugar[1]]!='X':
+                    afundado=False
+            if afundado==True:
+                soma+=1
+    return soma
