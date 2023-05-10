@@ -74,3 +74,37 @@ def afundados(frota, tabuleiro):
             if afundado==True:
                 soma+=1
     return soma
+
+
+
+def define_posicoes(linha,coluna,orientacao,tamanho):
+    lista = []
+    if orientacao == 'vertical':
+        for i in range(tamanho):
+            posicao = []
+            posicao.append(linha+i)
+            posicao.append(coluna)
+            lista.append(posicao)
+
+    if orientacao == 'horizontal':
+        for i in range(tamanho):
+            posicao = []
+            posicao.append(linha)
+            posicao.append(coluna+i)
+            lista.append(posicao)
+    return lista
+
+    
+def posicao_valida (frota, linha, coluna, orientacao, tamanho):
+    novas_embarcacoes = define_posicoes (linha, coluna, orientacao,tamanho)
+    for i in novas_embarcacoes:
+        if i[0] > 9 or i[1] > 9 or i[0]<0 or i[1]<0:
+            return False
+    for definicoes in frota. values ():
+        embarcacoes_qtd = len (definicoes)
+        for c in range(0, embarcacoes_qtd):
+            embarcacao = definicoes [c]
+            for i in novas_embarcacoes:
+                if i in embarcacao:
+                    return False
+    return True
